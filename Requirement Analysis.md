@@ -8,7 +8,7 @@ For this specific task it is required that we find the
 I broke this up into its 4 components:
 ## Functional Requirements
 ### Catalog Management
-The system shall maintain a collection of library items
+The system shall maintain a collection of library items  
 The system shall support multiple types of library items including:
 - Books  
 - Audiobooks  
