@@ -12,7 +12,7 @@ The system shall maintain a collection of library items
 The system shall support multiple types of library items including:
 - Books  
 - Audiobooks  
-- DVDs  
+- Music  
 - Movies  
 - Games  
 - Other resources
