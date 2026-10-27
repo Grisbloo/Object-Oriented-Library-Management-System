@@ -1,5 +1,37 @@
-Reservations use first-in, first-out (FIFO) priority. The earliest eligible reservation gets the next available copy.
+The system maintains library members, catalog items, physical copies, loans, and reservations.
 
-Item copies can be Available, Borrowed, or On Hold. An item placed On Hold is reserved for a particular member and cannot be borrowed by another member.
 
-Membership eligibility affects borrowing and reservations. Expired or otherwise ineligible members cannot initiate new borrowing transactions or have reservations fulfilled.
+
+Multiple physical copies may belong to one library item.
+
+
+
+Each physical copy may have many historical loans but no more than one active loan.
+
+
+
+A library member may have multiple active loans and reservations.
+
+
+
+Reservations are associated with a library item rather than a specific physical copy until fulfillment.
+
+
+
+Reservations are fulfilled according to FIFO priority among eligible members.
+
+
+
+Members cannot create duplicate active reservations for the same item.
+
+
+
+Item-copy availability statuses include Available, Borrowed, and OnHold.
+
+
+
+The system preserves completed loans as borrowing history.
+
+
+
+Borrowing and returning are processed as transactions, so validation failures do not leave partially updated records.
