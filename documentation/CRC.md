@@ -1,12 +1,12 @@
 ## Borrow Item
 ### Class	Responsibility
-LibraryManagementSystem - Receives system events from the librarian.
-BorrowingController	- Coordinates and validates the borrowing transaction.
-LibraryMember	- Provides membership status and current borrowing information.
-LibraryCatalog -	Locates requested physical copies.
-ItemCopy -	Reports and updates its availability.
-LoanPolicy -	Determines eligibility and due dates.
-Loan -	Records borrowing details and maintains the transaction.
+LibraryManagementSystem - Receives system events from the librarian.  
+BorrowingController	- Coordinates and validates the borrowing transaction.  
+LibraryMember	- Provides membership status and current borrowing information.  
+LibraryCatalog -	Locates requested physical copies.  
+ItemCopy -	Reports and updates its availability.  
+LoanPolicy -	Determines eligibility and due dates.  
+Loan -	Records borrowing details and maintains the transaction.  
 
 ### Collaboration:
 1. The librarian submits the borrowing request through LibraryManagementSystem.
@@ -21,12 +21,12 @@ Loan -	Records borrowing details and maintains the transaction.
 
 ## Return Item
 ### Class	Responsibility
-LibraryManagementSystem - Receives the return request.
-BorrowingController -	Coordinates the return transaction.
-Loan -	Records the return date and determines overdue status.
-ItemCopy -	Updates its availability.
-ReservationController -	Determines whether a pending reservation should receive the returned copy.
-Reservation -	Maintains the resulting reservation status.
+LibraryManagementSystem - Receives the return request.  
+BorrowingController -	Coordinates the return transaction.  
+Loan -	Records the return date and determines overdue status.  
+ItemCopy -	Updates its availability.  
+ReservationController -	Determines whether a pending reservation should receive the returned copy.  
+Reservation -	Maintains the resulting reservation status.  
 
 ### Collaboration:
 1. The librarian submits the return request.
@@ -41,12 +41,12 @@ Reservation -	Maintains the resulting reservation status.
     
 ## Reserve Item
 ### Class	Responsibility
-LibraryManagementSystem -	Receives the reservation request.
-ReservationController -	Validates and coordinates the reservation.
-LibraryMember -	Provides membership eligibility information.
-LibraryCatalog -	Retrieves the selected item and its copies.
-LibraryItem -	Provides information about available copies.
-Reservation -	Records the reservation and its current status.
+LibraryManagementSystem -	Receives the reservation request.  
+ReservationController -	Validates and coordinates the reservation.  
+LibraryMember -	Provides membership eligibility information.  
+LibraryCatalog -	Retrieves the selected item and its copies.  
+LibraryItem -	Provides information about available copies.  
+Reservation -	Records the reservation and its current status.  
 
 ### Collaboration:
 1. The member selects an unavailable item and requests a reservation.
