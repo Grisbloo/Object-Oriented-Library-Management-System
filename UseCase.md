@@ -95,28 +95,89 @@
 ### Postconditions
 -  A new member account is created with a Unique ID and the account is able to borrow/return items.
 
-# To Do
-
 ## Manage Member
+
 ### Primary actor(s)
-- 
+- Librarian
+
 ### Preconditions
--
+- The librarian is able to log on to the system.
+- The librarian has permission to manage member accounts.
+- The member being managed already exists in the library database.
+
 ### Main Success Scenario
--
+1. The librarian logs into the library management system.
+2. The librarian searches for a member using their library card or member ID.
+3. The system retrieves the member's account information.
+4. The librarian selects the member account they wish to manage.
+5. The system displays the member's information, membership status, and borrowing history.
+6. The librarian selects the information or account status they wish to modify.
+7. The librarian enters the updated information.
+8. The system validates the updated information.
+9. The system saves the changes to the member's account.
+10. The system displays a confirmation that the member's account has been successfully updated.
+
 ### Appropriate Alternative/Exception Flows
--
+- The member cannot be found.
+    - The system informs the librarian that no matching member exists.
+    - The librarian may search again or proceed to Register Member.
+- The updated information is invalid or incomplete.
+    - The system displays an error explaining which information is invalid.
+    - The librarian corrects the information and continues from step 7.
+- The member's account is expired.
+    - The librarian may renew the membership if the member meets the renewal requirements.
+- The member has outstanding loans or reservations.
+    - The system prevents account deactivation if unresolved borrowing or reservation activity would violate library policy.
+
 ### Postconditions
--  
+- The member's account information is successfully updated in the system.
+- The updated membership information is available for future borrowing, returning, and reservation operations.
+- The member's existing borrowing history is preserved.
 
 ## Manage Reservations
+
 ### Primary actor(s)
-- 
+- Librarian
+
 ### Preconditions
--
+- The librarian is able to log on to the system.
+- The librarian has permission to manage reservations.
+- The library database contains reservation information.
+- The reservation being managed exists in the system.
+
 ### Main Success Scenario
--
+1. The librarian logs into the library management system.
+2. The librarian accesses the reservation management section.
+3. The system displays the outstanding reservations.
+4. The librarian selects a reservation to manage.
+5. The system displays the reservation details, including the requesting member, reserved item, reservation date, and current status.
+6. The librarian reviews the reservation and determines whether the requested item has an available copy.
+7. The system verifies the reservation's priority relative to other outstanding reservations for the same item.
+8. If an eligible reservation has priority and a copy is available, the librarian selects the option to fulfill the reservation.
+9. The system assigns the available copy to the reservation and marks it as On Hold.
+10. The system updates the reservation status and displays confirmation of the changes.
+
 ### Appropriate Alternative/Exception Flows
--
+- No reservations exist.
+    - The system informs the librarian that there are no outstanding reservations.
+- The requested item is unavailable.
+    - The reservation remains active until an eligible copy becomes available.
+- Multiple members have reserved the same item.
+    - The system prioritizes reservations based on the order in which they were created.
+    - Later reservations remain pending until their turn is reached.
+- The requesting member is no longer eligible.
+    - The system prevents the reservation from being fulfilled.
+    - The librarian may cancel the reservation according to library policy.
+- The member requests cancellation.
+    - The librarian selects the reservation and chooses Cancel Reservation.
+    - The system updates the reservation status to Cancelled.
+    - Any copy held exclusively for the cancelled reservation is released or assigned to the next eligible reservation.
+- The reservation has already been fulfilled or cancelled.
+    - The system prevents the librarian from fulfilling or cancelling the reservation again.
+
 ### Postconditions
--  
+- The selected reservation is updated appropriately.
+- Fulfilled reservations are associated with an available copy placed On Hold.
+- Cancelled reservations are no longer considered active.
+- Outstanding reservations retain their correct priority.
+- The availability of affected library copies is updated accordingly.
