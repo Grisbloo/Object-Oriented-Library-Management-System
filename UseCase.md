@@ -35,7 +35,7 @@
 ### Main Success Scenario
 1. The Librarian scans the member's library card
 2. The Librarian scans the item. 
-3. The system removes the item from the member's account.
+3. The system removes the item from the member's currently borrowed items.
 4. The system marks the item as available.
 5. Steps 2-4 are repeated for all items.
 6. A receipt is printed with a summary of all returned items
@@ -68,8 +68,8 @@
     - The member is prompted to Borrow Item.
 - A member's library card is expired
     - If the member proceeds with renewing their membership. Then the scenario can begin at step 1.
-- Another member already has a reservation set.
-    - This reservation is created with the prior one(s) having priority.
+- The member already has an active reservation for the selected item.
+    - The system rejects the duplicate request
 ### Postconditions
 - The reservation is succesfully created
 
