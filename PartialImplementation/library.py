@@ -52,15 +52,15 @@ class Library:
         return due_items
 
     def borrow_item(self, member: LibraryMember, item_names: list[str]):
-        reciept = Receipt()
-
+        receipt = Receipt()
+        #Holds can be taken from a borrow
         if not member.is_in_good_standing():
-            reciept.error = "Not in Good Standing"
-            return reciept
+            receipt.error = "Not in Good Standing"
+            return receipt
 
         if self.now >= member.expiry:
-            reciept.error = "Member Expired"
-            return reciept
+            receipt.error = "Member Expired"
+            return receipt
 
         for item_name in item_names:
             if item_name not in self.items:
@@ -74,13 +74,26 @@ class Library:
             self.items[item_name].checked_out_by = member.name
             self.items[item_name].due = due_date
 
-            reciept.add_item(self.items[item_name], due_date)
-        return reciept
+            receipt.add_item(self.items[item_name], due_date)
+        return receipt
 
 
     def return_item(self, member: LibraryMember, item_names: list[str]):
 
         pass
+        # def identify member(MemberID): **CheckedOutBy is member**
+        # if Member is valid:
+        #   bring up checkedoutby.member's receipt
+        #   For checkedoutitem in receipt:
+        #   Check due date and returndate (which is day of operation)
+        #       If returned before due date, which is epirary date:
+        #            do not convert loan to loanexpired
+        #       else:
+        #            returned after due date, convert loan to loanexpired
+        #   convert checkedoutitem status to inlibrary
+        #   Remove checkoutitem from reciept
+        #   small waiting period before item becomes available to allow librarian to check items for damage/wear and tear
+        #   Librarian approves for item to be availible to checkout
 
 
     def reserve_item(self, member: LibraryMember, item_names: list[str]):
