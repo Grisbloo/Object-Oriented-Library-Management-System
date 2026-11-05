@@ -54,7 +54,7 @@
 ### Primary actor(s)
 - Member
 ### Preconditions
-- The person attempting to checkout a book has a library card and is in good standing.
+- The member has a valid library card and an account in good standing.
 - The item that is being attempted to reserve exists on the library database.
 - The item is not available.
 ### Main Success Scenario
@@ -63,6 +63,7 @@
 3. The member selects reserve.
 4. The system confirms the member's account is in good standing.
 5. The item is successfully reserved.
+6. The system creates a reservation, associates it with the member and requested item, and confirms the reservation.
 ### Appropriate Alternative/Exception Flows
 - The item is available
     - The member is prompted to Borrow Item.
@@ -91,7 +92,11 @@
 8. The librarian scans a blank library card and links the card to the new account.
 9. The librarian hands the library card to the new member.
 ### Appropriate Alternative/Exception Flows
--
+- Existing account found: The system informs the librarian that the guest is already registered.  
+- Invalid or missing information: The system rejects the registration and identifies the required corrections.  
+- Identification cannot be verified: The librarian cannot complete registration.  
+- Card already assigned: The system rejects the card assignment and requests another card.  
+
 ### Postconditions
 -  A new member account is created with a Unique ID and the account is able to borrow/return items.
 
@@ -151,11 +156,12 @@
 3. The system displays the outstanding reservations.
 4. The librarian selects a reservation to manage.
 5. The system displays the reservation details, including the requesting member, reserved item, reservation date, and current status.
-6. The librarian reviews the reservation and determines whether the requested item has an available copy.
-7. The system verifies the reservation's priority relative to other outstanding reservations for the same item.
-8. If an eligible reservation has priority and a copy is available, the librarian selects the option to fulfill the reservation.
-9. The system assigns the available copy to the reservation and marks it as On Hold.
-10. The system updates the reservation status and displays confirmation of the changes.
+6. The librarian selects the option to check reservation fulfillment eligibility.
+7. The system checks item availability, reservation priority, and member eligibility.
+8. The system verifies the reservation's priority relative to other outstanding reservations for the same item.
+9. If an eligible reservation has priority and a copy is available, the librarian selects the option to fulfill the reservation.
+10. The system assigns the available copy to the reservation and marks it as On Hold.
+11. The system updates the reservation status and displays confirmation of the changes.
 
 ### Appropriate Alternative/Exception Flows
 - No reservations exist.
