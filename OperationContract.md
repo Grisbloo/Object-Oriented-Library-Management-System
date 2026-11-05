@@ -5,15 +5,15 @@ Operation: `confirmBorrowing()`
 
 Cross-reference: Borrow Item use case
 
-**Preconditions:**
+Preconditions:
 1. The librarian has identified an existing library member.
 2. The member's account is active and in good standing.
 3. At least one ItemCopy has been scanned and selected for borrowing.
 4. Every selected copy exists and is available to the member.
 5. Each selected copy has no active loan.
-6. The member has not exceeded any applicable borrowing limits.  
-Postconditions (on successful completion):  
+6. The member has not exceeded any applicable borrowing limits.
 
+Postconditions (on successful completion):  
 1. A new Loan instance was created for each selected ItemCopy.
 2. Each new Loan was associated with the borrowing LibraryMember.
 3. Each new Loan was associated with its corresponding ItemCopy.
@@ -35,8 +35,9 @@ Preconditions:
 2. At least one ItemCopy has been scanned and selected for return.
 3. Every selected copy exists in the library system.
 4. Each selected copy is associated with an active Loan belonging to the identified member.
-5. None of the selected loans has already been closed.  
-Postconditions (on successful completion):  
+5. None of the selected loans has already been closed.
+   
+Postconditions (on successful completion):
 1. The returnDate attribute of each associated Loan was assigned the current date.
 2. Each returned copy's associated Loan was marked as completed.
 3. Each completed Loan was no longer considered an active borrowing transaction.
@@ -61,8 +62,9 @@ Preconditions:
 2. The member's account is active and in good standing.
 3. The LibraryItem identified by itemId exists in the catalog.
 4. No copies of the selected item are currently available for ordinary borrowing.
-5. The member does not already have an active reservation for the selected item.  
-Postconditions (on successful completion):  
+5. The member does not already have an active reservation for the selected item.
+   
+Postconditions (on successful completion):
 1. A new Reservation instance was created.
 2. The new Reservation was associated with the requesting LibraryMember.
 3. The new Reservation was associated with the selected LibraryItem.
