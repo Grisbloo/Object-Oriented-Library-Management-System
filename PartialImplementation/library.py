@@ -14,6 +14,7 @@ class LibraryItem:
         self.name = name
         self.checked_out_by = ""
         self.due = due
+        self.reservations = []
 
 class Receipt:
     def __init__(self):
@@ -98,7 +99,35 @@ class Library:
 
     def reserve_item(self, member: LibraryMember, item_names: list[str]):
 
-        pass
+        receipt = Receipt()
+
+        if not member.is_in_good_standing():
+            receipt.error = "Not in Good Standing"
+            return receipt 
+
+        if self.now >= member.expiry:
+            receipt.error = "Member Expired"
+            return receipt 
+            
+            for item_name in item_names:
+                if item_name not in self.items:
+                    continue
+
+                item = self.items[item_name]
+
+                # Precondition 4: Only allow reserve if no copies are available
+                if not item.checked_out_by:
+                    continue
+
+                # Precondition 5: Prevent duplicate active reservations
+                if member.name in item.reservations:
+                    continue 
+
+                # Postcondition: FIFO append and add to receipt
+                item.reservations.append(member.name)
+                receipt.add_item(item, item.due)
+
+            return receipt
 
 library = Library()
 library.add_item(LibraryItem("The Great Gatsby"))
