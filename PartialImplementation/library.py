@@ -66,20 +66,35 @@ class Library:
         return receipt
 
     def return_item(self, member: LibraryMember, item_names: list[str]):
-        pass
-        # def identify member(MemberID): **CheckedOutBy is member**
-        # if Member is valid:
-        #   bring up checkedoutby.member's receipt
-        #   For checkedoutitem in receipt:
-        #   Check due date and returndate (which is day of operation)
-        #       If returned before due date, which is epirary date:
-        #            do not convert loan to loanexpired
-        #       else:
-        #            returned after due date, convert loan to loanexpired
-        #   convert checkedoutitem status to inlibrary
-        #   Remove checkoutitem from reciept
-        #   small waiting period before item becomes available to allow librarian to check items for damage/wear and tear
-        #   Librarian approves for item to be availible to checkout
+    returnReceipt = Receipt()
+    for item_name in item_names:
+        # Check if item exists in library
+        if item_name not in self.items:
+            continue
+        item = self.items[item_name]
+        # Check if item is checked out by this member
+        if item.checked_out_by != member.name:
+            continue
+        # Determine if item is overdue
+        if self.now > item.due:
+            print(f"{item.name} was returned late.")
+        else:
+            print(f"{item.name} was returned on time")
+        # Record the return date
+        return_date = self.now
+
+        # Check for pending reservations
+        if item.reservations:
+            #FIFO
+            next_member = item.reservations.pop(0)
+            item.checked_out_by = f"HOLD:{next_member}"
+        else:
+            # No reservations, the item becomes available
+            item.checked_out_by = ""
+        # Add returned item to receipt
+        returnReceipt.add_item(item, return_date)
+    # Return receipt
+    return returnReceipt
 
     def reserve_item(self, member: LibraryMember, item_names: list[str]):
         receipt = Receipt()
